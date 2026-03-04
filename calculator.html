@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Calculator</title>
+<meta charset="UTF-8">
+<meta name="description" content="Calculator">
+<style>
+
+        body{
+            font-family: Arial;
+        }
+
+        .calculator{
+            width: 220px;
+            border: 1px solid black;
+            padding: 10px;
+
+        }
+
+        input{
+            width: 200px;
+            height: 30px;
+            margin-bottom: 10px;
+        }
+
+        button{
+            width: 45px;
+            height: 40px;
+            margin: 2px;
+        }
+</style>
+</head>
+<body>
+<h2> Calculator</h2>
+<form>
+<div class="calculator" id="calcBox">
+<input type="text" id="display">
+</div>
+</form>
+<script>
+
+    var calcBox = document.getElementById("calcBox");
+    var display = document.getElementById("display");
+    var values = ["7","8","9","+",
+                  "4","5","6","-",
+                  "1","2","3","*",
+                  "0","C","=","/"];
+
+    for(var i=0; i<values.length; i++){
+        var btn = document.createElement("button");   
+        btn.type = "button";
+        btn.innerHTML = values[i];
+        calcBox.appendChild(btn);   
+        btn.addEventListener("click", function(){
+
+            var value = this.innerHTML;
+
+            if(value == "C"){
+                display.value = "";
+            }
+
+            else if(value == "="){
+                calculate(function(result){
+                    display.value = result;
+                });
+
+            }
+
+            else{
+                display.value = display.value + value;
+
+            }
+
+        });
+
+    }
+
+    function calculate(callback){
+        var expression = display.value;
+        var result = eval(expression);
+        
+        setTimeout(function(){
+
+            callback(result);
+
+        }, 200);
+
+    }
+</script>
+</body>
+</html>
+ 
