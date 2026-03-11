@@ -125,3 +125,20 @@ function checkWinner(){
 }
 
 resetBtn.addEventListener("click", resetGame);
+function resetGame(){
+
+    board = ["","","","","","","","",""];
+    currentPlayer = "X";
+    gameActive = true;
+
+    cells.forEach(cell=>{
+        cell.innerHTML="";
+    });
+
+    statusText.innerHTML = "Player X's turn";
+}
+
+</script>
+
+</body>
+</html>
